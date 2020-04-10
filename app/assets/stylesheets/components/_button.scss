@@ -1,0 +1,12 @@
+.btn {
+  background: #FF6F59;
+  border-radius: 5px;
+  color: white;
+  padding: 10px;
+  opacity: 0.8;
+  &:hover {
+    opacity: 1;
+    transition: 0.5s;
+    border-radius: 10px;
+  }
+}
