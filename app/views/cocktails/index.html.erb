@@ -1,33 +1,30 @@
-
-<div class="background" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1514361892635-6b07e31e75f9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80');">
-  <div class="banner">
-    <div class="banner-content">
-      <h1>Mister Ege's Cocktails</h1>
-      <p>Are you ready to taste the most delicous cocktails ever made?</p>
-      <%= link_to "Add a cocktail", new_cocktail_path, class: "btn add-cocktail" %>
+<section class="hero">
+  <div class="container hero-inner">
+    <p class="hero-kicker">Craft better drinks</p>
+    <h1>Discover your next favorite cocktail</h1>
+    <p class="hero-copy">
+      Clean recipes, simple ingredient tracking, and faster prep for your home bar.
+    </p>
+    <div class="hero-actions">
+      <%= link_to "Create a cocktail", new_cocktail_path, class: "btn btn-primary" %>
+      <a class="btn btn-ghost" href="#cocktail-list">Browse recipes</a>
     </div>
   </div>
-<div class="container">
-  <div class="row">
+</section>
+
+<section class="container cocktails-section" id="cocktail-list">
+  <div class="section-header">
+    <h2>All cocktails</h2>
+    <span class="pill"><%= pluralize(@cocktails.count, "recipe") %></span>
+  </div>
+
+  <div class="cocktail-grid">
     <% @cocktails.each do |cocktail| %>
-      <div class="col-12 col-md-6 col-lg-3">
-        <% if cocktail.photo.attached? %>
-          <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= url_for(cocktail.photo) %>');">
-            <div class="card-description">
-              <h2><%= cocktail.name %></h2>
-            </div>
-            <%= link_to "", cocktail_path(cocktail), class: 'card-link' %>
-          </div>
-        <% else %>
-          <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('https://images.unsplash.com/photo-1572590016064-3e6ae9c04947?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=564&q=80');">
-            <div class="card-description">
-              <h2><%= cocktail.name %></h2>
-            </div>
-            <%= link_to "", cocktail_path(cocktail), class: 'card-link' %>
-          </div>
-        <% end %>
-      </div>
+      <% image_url = cocktail.photo.attached? ? url_for(cocktail.photo) : "https://images.unsplash.com/photo-1572590016064-3e6ae9c04947?auto=format&fit=crop&w=900&q=80" %>
+      <%= link_to cocktail_path(cocktail), class: "cocktail-card", style: "--card-image: linear-gradient(180deg, rgba(7, 16, 29, 0.05), rgba(7, 16, 29, 0.8)), url('#{image_url}');" do %>
+        <span class="cocktail-card-title"><%= cocktail.name %></span>
+        <span class="cocktail-card-link">View recipe</span>
+      <% end %>
     <% end %>
   </div>
-</div>
-</div>
+</section>

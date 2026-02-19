@@ -1,18 +1,23 @@
-<div class="background" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1511715112108-9acc6c3ff61f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80');">
-<div class="container">
-  <div class="row justify-content-center">
-    <div class="col-md-8 create-box">
-      <h1>Create a new cocktail</h1>
+<section class="container form-page">
+  <div class="panel form-panel">
+    <%= link_to "Back to all cocktails", root_path, class: "inline-link" %>
+    <h1>Create a new cocktail</h1>
+    <p class="panel-copy">Add a memorable name and optionally upload a photo.</p>
 
-      <%= simple_form_for @cocktail do |f| %>
-        <%= f.input :name %>
-        <%= f.input :photo, as: :file %>
-        <%= f.button :submit, class: 'btn' %>
-      <% end %>
-    </div>
+    <%= simple_form_for @cocktail, html: { class: "stack-form" } do |f| %>
+      <%= f.input :name, input_html: { autocomplete: "off", placeholder: "Negroni, Mojito, Old Fashioned..." } %>
+
+      <div class="form-group upload-field" data-file-dropzone>
+        <%= f.label :photo, "Photo" %>
+        <div class="upload-dropzone" data-file-dropzone-zone tabindex="0" role="button" aria-label="Upload cocktail photo">
+          <p class="upload-title">Drag and drop an image here</p>
+          <p class="upload-subtitle">or click to browse from your device</p>
+          <p class="upload-filename" data-file-dropzone-name>No file selected</p>
+          <%= f.file_field :photo, class: "upload-input", accept: "image/*", data: { file_dropzone_input: true } %>
+        </div>
+      </div>
+
+      <%= f.button :submit, "Save cocktail", class: "btn btn-primary" %>
+    <% end %>
   </div>
-  <div class="back">
-   <%= link_to "Back to all cocktails", root_path %>
-  </div>
-</div>
-</div>
+</section>

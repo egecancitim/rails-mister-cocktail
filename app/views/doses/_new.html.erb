@@ -1,6 +1,33 @@
-<h3>Add a new dose</h3>
-<%= simple_form_for [cocktail, dose] do |f| %>
-  <%= f.association :ingredient, input_html: { class: "beautiful-dropdown" }, include_hidden: false %>
-  <%= f.input :description %>
-  <%= f.button :submit, class: "btn" %>
+<h2>Add ingredient</h2>
+<p class="panel-copy">Specify what goes into this cocktail and how much.</p>
+
+<%= simple_form_for [cocktail, dose], html: { class: "stack-form" } do |f| %>
+  <div class="form-group ingredient-autocomplete" data-ingredient-autocomplete>
+    <%= f.label :ingredient_id, "Ingredient" %>
+    <%= f.hidden_field :ingredient_id, data: { ingredient_autocomplete_value: true } %>
+    <input
+      type="search"
+      class="form-control ingredient-autocomplete-input"
+      data-ingredient-autocomplete-input
+      placeholder="Search ingredients..."
+      autocomplete="off"
+      aria-label="Search ingredients"
+      role="combobox"
+      aria-expanded="false"
+      aria-controls="ingredient-autocomplete-list"
+      aria-autocomplete="list"
+    >
+    <ul class="ingredient-autocomplete-list" data-ingredient-autocomplete-list id="ingredient-autocomplete-list" role="listbox">
+      <% Ingredient.order(:name).each do |ingredient| %>
+        <li
+          class="ingredient-autocomplete-option"
+          data-ingredient-id="<%= ingredient.id %>"
+          data-ingredient-name="<%= ingredient.name.downcase %>"
+          role="option"
+        ><%= ingredient.name %></li>
+      <% end %>
+    </ul>
+  </div>
+  <%= f.input :description, placeholder: "e.g. 2 oz, shaken with ice" %>
+  <%= f.button :submit, "Add ingredient", class: "btn btn-primary" %>
 <% end %>

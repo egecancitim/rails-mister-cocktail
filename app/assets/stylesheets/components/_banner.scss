@@ -1,25 +1,43 @@
-.banner {
-  color: white;
-  text-align: center;
-  height: 400px;
-  /* if you have a 70px navbar => height: calc(100vh - 70px); */
-  background-size: cover !important;
+.hero {
+  padding: 2.5rem 0 1.4rem;
+}
+
+.hero-inner {
+  background:
+    linear-gradient(120deg, rgba(7, 16, 29, 0.9) 0%, rgba(7, 16, 29, 0.68) 45%, rgba(7, 16, 29, 0.12) 100%),
+    url("https://images.unsplash.com/photo-1514361892635-6b07e31e75f9?auto=format&fit=crop&w=1700&q=80");
+  background-size: cover;
+  background-position: center;
+  border-radius: 24px;
+  padding: clamp(1.5rem, 2.5vw, 2.6rem);
+  color: #fff;
+  box-shadow: 0 24px 44px rgba(7, 16, 29, 0.25);
+}
+
+.hero-kicker {
+  color: rgba(255, 255, 255, 0.75);
+  margin-bottom: 0.8rem;
+  font-size: 0.92rem;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  font-weight: 700;
+}
+
+.hero h1 {
+  color: #fff;
+  font-size: clamp(2rem, 3.6vw, 3rem);
+  margin-bottom: 0.7rem;
+  max-width: 22ch;
+}
+
+.hero-copy {
+  color: rgba(255, 255, 255, 0.84);
+  max-width: 56ch;
+  margin-bottom: 1.4rem;
+}
+
+.hero-actions {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 32px;
-}
-.banner h1 {
-  font-size: 50px;
-  // font-weight: bold;
-  text-shadow: 0px 1px rgba(0, 0, 0, 0.2);
-  font-family: 'Lobster', cursive;
-}
-.banner p {
-  font-size: 25px;
-  font-weight: lighter;
-  color: rgb(255, 255, 255);
-  opacity: 0.6;
-  margin-bottom: 30px;
-  font-family: 'Josefin Sans', sans-serif;
+  flex-wrap: wrap;
+  gap: 0.8rem;
 }

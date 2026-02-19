@@ -1,15 +1,34 @@
 .btn {
-  color: white;
-  border: 1px solid #4A4A4A;
-  padding: 8px 24px;
-  border-radius: 50px;
-  font-weight: lighter;
-  opacity: 0.6;
-  transition: opacity 0.3s ease;
-  &:hover {
-    color: black;
-    background: white;
-    text-decoration: none;
-    opacity: 1;
-  }
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  padding: 0.6rem 1.2rem;
+  font-weight: 700;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.btn-primary {
+  color: #fff;
+  border: 1px solid transparent;
+  background: linear-gradient(135deg, var(--brand), var(--brand-strong));
+  box-shadow: 0 10px 20px rgba(36, 121, 255, 0.2);
+}
+
+.btn-primary:hover {
+  color: #fff;
+  transform: translateY(-1px);
+  box-shadow: 0 13px 24px rgba(36, 121, 255, 0.3);
+}
+
+.btn-ghost {
+  border: 1px solid var(--line);
+  color: var(--text);
+  background: var(--surface-overlay);
+}
+
+.btn-ghost:hover {
+  color: var(--brand);
+  border-color: rgba(36, 121, 255, 0.38);
+  background: var(--surface);
 }

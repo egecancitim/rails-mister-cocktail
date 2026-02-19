@@ -1,25 +1,13 @@
-body {
-  color: white;
-  font-family: 'Josefin Sans', sans-serif;
-  font-size: 25px;
-  font-weight: 300px;
+.form-page {
+  margin-top: 2.2rem;
 }
 
-.back {
-  margin: 30px;
-  color: white;
+.form-panel {
+  max-width: 700px;
+  margin: 0 auto;
 }
 
-a {
-  color: white;
-  opacity: 0.7;
-  &:hover {
-    color:white;
-    text-decoration: none;
-    opacity: 1;
-   }
-}
-
-.create-box {
-  margin: 30px;
+.form-panel h1 {
+  margin-top: 1rem;
+  margin-bottom: 0.4rem;
 }

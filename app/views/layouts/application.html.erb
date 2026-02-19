@@ -12,7 +12,20 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-    <%= yield %>
+  <body class="app-body">
+    <header class="topbar">
+      <div class="container topbar-inner">
+        <%= link_to "Mister Cocktail", root_path, class: "brand-link" %>
+        <div class="topbar-actions">
+          <button class="btn btn-ghost theme-toggle" type="button" data-theme-toggle aria-pressed="false" aria-label="Enable night mode">
+            <span aria-hidden="true">☾</span>
+          </button>
+          <%= link_to "New cocktail", new_cocktail_path, class: "btn btn-primary" %>
+        </div>
+      </div>
+    </header>
+    <main class="app-main">
+      <%= yield %>
+    </main>
   </body>
 </html>

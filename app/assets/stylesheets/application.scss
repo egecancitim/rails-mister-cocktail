@@ -5,13 +5,311 @@
 
 // External libraries
 @import "bootstrap/scss/bootstrap";
-@import "font-awesome-sprockets";
-@import "font-awesome";
 
 // Your CSS partials
 @import "components/index";
 @import "pages/index";
 
-body {
+:root {
+  --app-bg: #f3f7ff;
+  --surface: #ffffff;
+  --surface-soft: #f8fbff;
+  --text: #0f1726;
+  --text-muted: #52607a;
+  --line: #d8e1f0;
+  --brand: #2479ff;
+  --brand-strong: #0a5adb;
+  --danger: #be2f41;
+  --shadow-soft: 0 14px 34px rgba(15, 23, 38, 0.08);
+  --topbar-bg: rgba(243, 247, 255, 0.92);
+  --topbar-border: rgba(15, 23, 38, 0.08);
+  --panel-border: rgba(15, 23, 38, 0.08);
+  --input-bg: #ffffff;
+  --surface-overlay: rgba(255, 255, 255, 0.8);
+  --option-hover-bg: #edf4ff;
+  --upload-bg: linear-gradient(180deg, #ffffff, #f7faff);
+  --upload-border: #9db3da;
+  --upload-hover-border: #7e9ed5;
+  --upload-active-bg: #eef5ff;
+  --pill-bg: #ffffff;
+  --pill-text: #0f1726;
+  --pill-border: #d8e1f0;
+}
+
+.app-body.dark-mode {
+  --app-bg: #0a1221;
+  --surface: #101a2c;
+  --surface-soft: #0d182a;
+  --text: #ecf3ff;
+  --text-muted: #9db0ce;
+  --line: #2b3b57;
+  --brand: #6ca8ff;
+  --brand-strong: #3f86f0;
+  --danger: #ff8090;
+  --shadow-soft: 0 14px 34px rgba(0, 0, 0, 0.35);
+  --topbar-bg: rgba(10, 18, 33, 0.9);
+  --topbar-border: rgba(160, 182, 214, 0.2);
+  --panel-border: rgba(160, 182, 214, 0.2);
+  --input-bg: #0f1b30;
+  --surface-overlay: rgba(21, 33, 55, 0.9);
+  --option-hover-bg: #172941;
+  --upload-bg: linear-gradient(180deg, #0f1b30, #0d182a);
+  --upload-border: #476289;
+  --upload-hover-border: #6c8cbe;
+  --upload-active-bg: #152744;
+  --pill-bg: #182840;
+  --pill-text: #dceaff;
+  --pill-border: #3a5279;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.app-body {
   min-height: 100vh;
+  margin: 0;
+  color: var(--text);
+  background:
+    radial-gradient(circle at 4% 0%, rgba(36, 121, 255, 0.16) 0%, transparent 35%),
+    radial-gradient(circle at 100% 16%, rgba(255, 157, 66, 0.14) 0%, transparent 30%),
+    var(--app-bg);
+  font-family: $body-font;
+}
+
+.app-main {
+  padding-bottom: 3rem;
+}
+
+h1, h2, h3 {
+  margin-top: 0;
+  font-family: $headers-font;
+  color: var(--text);
+}
+
+p {
+  color: var(--text-muted);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  backdrop-filter: blur(8px);
+  background: var(--topbar-bg);
+  border-bottom: 1px solid var(--topbar-border);
+}
+
+.topbar-inner {
+  min-height: 74px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.theme-toggle {
+  width: 42px;
+  height: 42px;
+  padding: 0;
+  font-size: 1.05rem;
+}
+
+.brand-link {
+  font-family: $headers-font;
+  font-size: 1.55rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.inline-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: var(--brand);
+  font-weight: 700;
+}
+
+.inline-link:hover {
+  color: var(--brand-strong);
+}
+
+.panel {
+  background: var(--surface);
+  border: 1px solid var(--panel-border);
+  border-radius: 18px;
+  box-shadow: var(--shadow-soft);
+  padding: 1.4rem;
+}
+
+.panel-copy {
+  margin-top: -0.3rem;
+  margin-bottom: 1.2rem;
+}
+
+.stack-form .form-group {
+  margin-bottom: 1rem;
+}
+
+.stack-form label {
+  font-weight: 700;
+  color: var(--text);
+}
+
+.stack-form .form-control,
+.stack-form .custom-select {
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  padding: 0.65rem 0.85rem;
+  min-height: 46px;
+  color: var(--text);
+  background: var(--input-bg);
+}
+
+.stack-form .form-control:focus,
+.stack-form .custom-select:focus {
+  border-color: var(--brand);
+  box-shadow: 0 0 0 3px rgba(36, 121, 255, 0.16);
+}
+
+.ingredient-autocomplete {
+  position: relative;
+}
+
+.ingredient-autocomplete-input {
+  padding-right: 2.2rem;
+  background-image: linear-gradient(45deg, transparent 50%, var(--text-muted) 50%), linear-gradient(135deg, var(--text-muted) 50%, transparent 50%);
+  background-position: calc(100% - 18px) calc(1.1em), calc(100% - 13px) calc(1.1em);
+  background-size: 5px 5px, 5px 5px;
+  background-repeat: no-repeat;
+}
+
+.ingredient-autocomplete-list {
+  position: absolute;
+  top: calc(100% + 0.35rem);
+  left: 0;
+  right: 0;
+  z-index: 25;
+  margin: 0;
+  padding: 0.35rem 0;
+  list-style: none;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--surface);
+  box-shadow: var(--shadow-soft);
+  max-height: 220px;
+  overflow-y: auto;
+  display: none;
+}
+
+.ingredient-autocomplete-list.is-open {
+  display: block;
+}
+
+.ingredient-autocomplete-option {
+  padding: 0.5rem 0.75rem;
+  color: var(--text);
+  cursor: pointer;
+}
+
+.ingredient-autocomplete-option:hover,
+.ingredient-autocomplete-option.is-highlighted {
+  background: var(--option-hover-bg);
+}
+
+.upload-dropzone {
+  position: relative;
+  border: 1px dashed var(--upload-border);
+  background: var(--upload-bg);
+  border-radius: 14px;
+  text-align: center;
+  padding: 1.2rem 1rem;
+  transition: border-color 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
+  cursor: pointer;
+}
+
+.upload-dropzone:hover {
+  border-color: var(--upload-hover-border);
+  transform: translateY(-1px);
+}
+
+.upload-dropzone.is-dragover {
+  border-color: var(--brand);
+  background: var(--upload-active-bg);
+}
+
+.upload-title {
+  margin-bottom: 0.15rem;
+  color: var(--text);
+  font-weight: 700;
+}
+
+.upload-subtitle {
+  margin-bottom: 0.35rem;
+  font-size: 0.92rem;
+}
+
+.upload-filename {
+  margin-bottom: 0;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--brand);
+}
+
+.upload-input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.text-button {
+  border: 0;
+  background: transparent;
+  color: var(--brand);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.text-button-danger {
+  color: var(--danger);
+}
+
+.empty-state {
+  margin-bottom: 0;
+  padding: 1rem;
+  border-radius: 12px;
+  background: var(--surface-soft);
+}
+
+:focus-visible {
+  outline: 3px solid rgba(36, 121, 255, 0.36);
+  outline-offset: 2px;
+}
+
+@media (max-width: 575px) {
+  .topbar-inner {
+    min-height: 66px;
+  }
+
+  .topbar-actions {
+    gap: 0.45rem;
+  }
+
+  .brand-link {
+    font-size: 1.3rem;
+  }
 }

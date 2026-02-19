@@ -1,1 +1,24 @@
-// Specific CSS for your home-page
+.cocktails-section {
+  margin-top: 1.2rem;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.section-header h2 {
+  margin-bottom: 0;
+}
+
+.pill {
+  border: 1px solid var(--pill-border);
+  background: var(--pill-bg);
+  color: var(--pill-text);
+  border-radius: 999px;
+  padding: 0.28rem 0.78rem;
+  font-size: 0.86rem;
+  font-weight: 700;
+}
